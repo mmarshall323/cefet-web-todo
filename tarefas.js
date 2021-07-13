@@ -5,6 +5,24 @@ let $filtro_tarefa = document.getElementById("filtro-de-categoria")
 let $ativas = document.getElementsByClassName("item-tarefa")
 
 
+///Opcional 5: Concluir uma tarefa
+const concluir_tarefa =()=>{
+    let teste =  document.querySelectorAll('.item-tarefa')
+    teste.forEach(function(elemento){
+        elemento.addEventListener('click',e=>{
+            if(e.target.classList.contains('marcado')){
+                e.target.classList.remove('marcado')
+                tarefas.find(item=>item.nome==e.target.innerHTML).realizada=false
+            }
+            else{
+                e.target.classList.add('marcado')
+                tarefas.find(item=>item.nome==e.target.innerHTML).realizada=true
+            }
+        })
+    })
+}
+
+
 
 ///Exercício 0: Representar tarefas
 let tarefas = [
@@ -36,8 +54,20 @@ const renderiza_tarefas = (tarefas) =>{
         elementoHTML.classList.add('item-tarefa')
         if(elemento.realizada)
         elementoHTML.classList.add('marcado')
+        switch(elemento.categoria){
+            case "lazer":
+                elementoHTML.classList.add('categoria-lazer')
+                break;
+            case "estudos":
+                elementoHTML.classList.add('categoria-estudos')
+                break;
+            case "compras":
+                elementoHTML.classList.add('categoria-compras')
+                break;
+        }
         $lista.appendChild(elementoHTML)
       })
+    concluir_tarefa()  
 }
 
 renderiza_tarefas(tarefas)
@@ -54,10 +84,22 @@ const adiciona_tarefas = () =>{
     elementoHTML = document.createElement("li")
     elementoHTML.innerHTML=tarefa.nome
     elementoHTML.classList.add('item-tarefa')
+    switch(tarefa.categoria){
+        case "lazer":
+            elementoHTML.classList.add('categoria-lazer')
+            break;
+        case "estudos":
+            elementoHTML.classList.add('categoria-estudos')
+            break;
+        case "compras":
+            elementoHTML.classList.add('categoria-compras')
+            break;
+    }
     $lista.appendChild(elementoHTML)
     tarefas.push(tarefa)
     $nome_tarefa.value=""
     $nome_tarefa.focus()
+    concluir_tarefa()
 }
 
 
@@ -92,23 +134,3 @@ $nome_tarefa.addEventListener('keydown', function (event) {
     adiciona_tarefas()
 })
 
-
-///Opcional 5: Concluir uma tarefa
-document.addEventListener("DOMContentLoaded", function(event) {
-    let teste =  document.querySelectorAll('.item-tarefa')
-    teste.forEach(function(elemento){
-        elemento.addEventListener('click',e=>{
-            if(e.target.classList.contains('marcado')){
-                e.target.classList.remove('marcado')
-                tarefas.find(item=>item.nome==e.target.innerHTML).realizada=false
-            }
-            else{
-                e.target.classList.add('marcado')
-                tarefas.find(item=>item.nome==e.target.innerHTML).realizada=true
-            }
-        })
-    })
-});
-
-
-  
