@@ -21,16 +21,16 @@
           <option value="estudos">Estudos</option>
         </select>
 
-        <button id="incluir-nova-tarefa">+</button>
+        <button id="incluir-nova-tarefa" onclick="adiciona_tarefas()" onkeyup="verifica_enter(event)">+</button>
       </div>
       <ul id="lista-tarefas">
         <!-- Exemplo de item da lista -->
-        <li class="item-tarefa marcado">Exemplo de item da lista</li>
+        <!-- <li class="item-tarefa marcado">Exemplo de item da lista</li> -->
       </ul>
 
       <div id="filtros">
         <label>Mostrar apenas categoria:
-          <select id="filtro-de-categoria">
+          <select id="filtro-de-categoria" onchange="filtrar_tarefas()">
             <option value="">Todas</option>
             <option value="lazer">Lazer</option>
             <option value="compras">Compras</option>
