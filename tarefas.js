@@ -98,7 +98,6 @@ document.addEventListener("DOMContentLoaded", function(event) {
     let teste =  document.querySelectorAll('.item-tarefa')
     teste.forEach(function(elemento){
         elemento.addEventListener('click',e=>{
-            console.log('click')
             if(e.target.classList.contains('marcado')){
                 e.target.classList.remove('marcado')
                 tarefas.find(item=>item.nome==e.target.innerHTML).realizada=false
